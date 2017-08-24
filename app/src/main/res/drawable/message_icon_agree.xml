@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/message_btn_agree_pressed" android:state_pressed="true"/>
+    <item  android:state_enabled="false">
+        <shape
+            android:shape="rectangle" >
+
+            <!-- 实心 -->
+            <solid android:color="@color/gray_ccc" />
+
+            <!-- 描边 -->
+            <stroke
+                android:width="0.5dp"
+                android:color="@color/gray_ccc" />
+
+            <!-- 圆角 -->
+
+            <corners
+                android:bottomLeftRadius="5dp"
+                android:bottomRightRadius="5dp"
+                android:topLeftRadius="5dp"
+                android:topRightRadius="5dp" />
+
+        </shape>
+    </item>
+    <item android:drawable="@drawable/message_btn_agree_normal"/>
+
+</selector>

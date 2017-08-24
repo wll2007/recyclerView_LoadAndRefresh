@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">recyclerviewDemo</string>
+    <string name="up">下拉刷新</string>
+    <string name="loosen">松开刷新</string>
+    <string name="refreshing">正在刷新</string>
+    <string name="down">上拉加载</string>
+    <string name="load_loosen">松开加载</string>
+    <string name="loading">正在加载</string>
+</resources>
