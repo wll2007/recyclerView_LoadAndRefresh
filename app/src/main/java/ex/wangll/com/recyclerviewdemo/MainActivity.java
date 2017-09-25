@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements LoadRecyclerView.
                 mview.onStopLoad();
             }else {
                 mAdapter.notifyDataSetChanged();
-                mview.onStopRefresh();
+                mview.onStopRefresh(Boolean.TRUE);
             }
         }
     };
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements LoadRecyclerView.
         setContentView(R.layout.activity_main);
 
         mview = (LoadRecyclerView) findViewById(R.id.recyView);
-        int i = 14;
+        int i = 4;
         while (i > 0) {
             data.add(String.valueOf(i--));
         }
@@ -125,9 +125,9 @@ public class MainActivity extends AppCompatActivity implements LoadRecyclerView.
 
     @Override
     public int getLayoutId(String item, int position) {
-        if(position == 6){
+        /*if(position == 6){
             return R.layout.other;
-        }
+        }*/
         return R.layout.item;
     }
 }

@@ -30,6 +30,8 @@ public class RefreshRecyclerView extends WrapRecyclerView {
     public final static int REFRESH_PULLDOWNING = 0x002;  //下拉刷新状态
     public final static int REFRESH_LOOSEN = 0x003;  //松开刷新状态(松开后会执行刷新)
     public final static int REFRESH_REFRESHING = 0x004;  //正在刷新状态
+    public final static int REFRESH_COMPLETE = 0x005;
+
     private onRefreshListener mRefreshListener;  //刷新回调监听(回调到Activiy或者Fragment中去处理刷新加载)
 
     public RefreshRecyclerView(Context context) {
@@ -133,12 +135,12 @@ public class RefreshRecyclerView extends WrapRecyclerView {
         if(mRefreshView == null){
             return;
         }
+        int delay  = 0 ;
         int currentMargin = ((MarginLayoutParams)mRefreshView.getLayoutParams()).topMargin;
         int margin = 1 - mRefreshViewHeight;
         if(mCurrentRefreshState==REFRESH_LOOSEN){
             mCurrentRefreshState = REFRESH_REFRESHING;
             margin = 0;
-
             if(mRefreshViewCreator != null){
                 mRefreshViewCreator.onRefreshing();
             }
@@ -148,6 +150,10 @@ public class RefreshRecyclerView extends WrapRecyclerView {
             }
         }
 
+        if(mCurrentRefreshState==REFRESH_COMPLETE){
+            mCurrentRefreshState = REFRESH_NORMAL;
+            delay  = 1000;
+        }
         ValueAnimator animator = ObjectAnimator.ofFloat(currentMargin,margin).setDuration(currentMargin-margin);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -156,6 +162,7 @@ public class RefreshRecyclerView extends WrapRecyclerView {
                 setRefreshViewMargin((int) currentTopMargin);
             }
         });
+        animator.setStartDelay(delay);
         animator.start();
         mCurrentDragFlag = false;
     }
@@ -198,11 +205,11 @@ public class RefreshRecyclerView extends WrapRecyclerView {
     /**
      * 停止刷新   注意调用时机(如果放到回调监听onRefresh处理完后调用则会有问题)
      */
-    public void  onStopRefresh(){
-        mCurrentRefreshState = REFRESH_NORMAL;
+    public void  onStopRefresh(Object o){
+        mCurrentRefreshState = REFRESH_COMPLETE;
         resetRefreshView();
         if(mRefreshViewCreator != null){
-            mRefreshViewCreator.onStopRefresh();
+            mRefreshViewCreator.onStopRefresh(o);
         }
     }
 

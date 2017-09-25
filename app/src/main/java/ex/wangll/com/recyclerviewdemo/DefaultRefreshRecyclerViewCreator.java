@@ -61,10 +61,12 @@ public class DefaultRefreshRecyclerViewCreator implements RefreshViewCreator {
     }
 
     @Override
-    public void onStopRefresh() {
+    public void onStopRefresh(Object o) {
         mImageLoading.setVisibility(View.GONE);
-        mImageview.setVisibility(View.VISIBLE);
+        mImageview.setVisibility(View.INVISIBLE);
         mImageview.setImageResource(R.drawable.pullup_icon);
-        mTextView.setText(mRefreshview.getResources().getString(R.string.up));
+        if(o instanceof Boolean && (Boolean) o) {
+            mTextView.setText(mRefreshview.getResources().getString(R.string.success));
+        }
     }
 }

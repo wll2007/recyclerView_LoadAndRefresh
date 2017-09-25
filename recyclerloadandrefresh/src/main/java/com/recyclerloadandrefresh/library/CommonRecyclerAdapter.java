@@ -77,10 +77,10 @@ public  abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Vie
             holder.itemView.setLayoutParams(layoutParams);
         }
 
-        convert(holder,mdatas.get(position),position);
+        convert(holder,mdatas.get(position),position,getItemViewType(position));
     }
 
-    public abstract void convert(ViewHolder holder, T t,int position) ;
+    public abstract void convert(ViewHolder holder, T t,int position,int viewType) ;
 
     @Override
     public int getItemCount() {
@@ -97,5 +97,20 @@ public  abstract class CommonRecyclerAdapter<T> extends RecyclerView.Adapter<Vie
 
     public void setOnItemLongClickListener(OnLongClickListener listener){
         mLongClickListener = listener;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    public T getItemData(int position){
+        return (position<0 || position>=mdatas.size())?null:mdatas.get(position);
+    }
+
+    public void removeData(T o){
+        if(o != null) {
+            mdatas.remove(o);
+        }
     }
 }

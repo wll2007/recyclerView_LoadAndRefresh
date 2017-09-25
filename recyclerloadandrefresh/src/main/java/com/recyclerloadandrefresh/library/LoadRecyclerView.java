@@ -31,10 +31,10 @@ public class LoadRecyclerView extends RefreshRecyclerView implements View.OnClic
     private float mDragIndex = 0.35f;   // 手指拖拽的阻力指数
     private boolean mCurrentDragFlag = false;   //当前是否在拖动
     private int mCurrentRefreshState;      //当前刷新状态
-    public final static int LOAD_NORMAL = 0x001;  //默认状态即正常状态
-    public final static int LOAD_PULLUPNING = 0x002;  //上拉加载状态
-    public final static int LOAD_LOOSEN = 0x003;  //松开加载状态(松开后会执行加载)
-    public final static int LOAD_LOADING = 0x004;  //正在加载状态
+    public final static int LOAD_NORMAL = 0x101;  //默认状态即正常状态
+    public final static int LOAD_PULLUPNING = 0x102;  //上拉加载状态
+    public final static int LOAD_LOOSEN = 0x103;  //松开加载状态(松开后会执行加载)
+    public final static int LOAD_LOADING = 0x104;  //正在加载状态
     private onLoadListener mLoadListener;  //加载回调监听(回调到Activiy或者Fragment中去处理加载)
     public LoadRecyclerView(Context context) {
         super(context);

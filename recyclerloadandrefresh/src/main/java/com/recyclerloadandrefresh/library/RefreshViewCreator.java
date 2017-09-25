@@ -33,5 +33,5 @@ public interface RefreshViewCreator {
     /**
      * 停止刷新
      */
-    void onStopRefresh();
+    void onStopRefresh(Object o);
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +15,7 @@ import android.widget.TextView;
 
 public class ViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View>  mArrayViews;
-
+    private Object object;
 
     public ViewHolder(View itemView) {
         super(itemView);
@@ -37,7 +39,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return  this;
     }
 
-    private <T extends View> T getView(int resid) {
+    public ViewHolder setText(int resid,int resourcId){
+        TextView view = getView(resid);
+        view.setText(resourcId);
+        return this;
+    }
+
+    private  <T extends View> T getView(int resid) {
         View view = mArrayViews.get(resid);
         if(view == null){
             view = itemView.findViewById(resid);
@@ -88,5 +96,20 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public void setItemOnLongClickListener(View.OnLongClickListener listener){
         itemView.setOnLongClickListener(listener);
+    }
+
+    public ViewHolder setAdapter(int resid, BaseAdapter adapter){
+        GridView view = getView(resid);
+        view.setAdapter(adapter);
+        return this;
+    }
+
+    public ViewHolder setTag(Object o){
+        object = o;
+        return this;
+    }
+
+    public Object getTag(){
+        return object;
     }
 }
