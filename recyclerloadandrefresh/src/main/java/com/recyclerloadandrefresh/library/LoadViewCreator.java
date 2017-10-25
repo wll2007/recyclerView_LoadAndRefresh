@@ -38,6 +38,6 @@ public interface LoadViewCreator {
     /**
      * 停止加载
      */
-    void onStopLoad();
+    void onStopLoad(Object o);
 
 }

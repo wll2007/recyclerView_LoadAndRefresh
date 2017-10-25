@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements LoadRecyclerView.
         public void handleMessage(Message msg) {
             if(msg.what == 1){
                 mAdapter.notifyDataSetChanged();
-                mview.onStopLoad();
+                mview.onStopLoad(Boolean.TRUE);
             }else {
                 mAdapter.notifyDataSetChanged();
                 mview.onStopRefresh(Boolean.TRUE);

@@ -203,11 +203,11 @@ public class LoadRecyclerView extends RefreshRecyclerView implements View.OnClic
     /**
      * 停止刷新   注意调用时机(如果放到回调监听onLoad处理完后调用则会有问题)
      */
-    public void  onStopLoad(){
+    public void  onStopLoad(Object o){
         mCurrentRefreshState = LOAD_NORMAL;
         resetLoadView();
         if(mLoadViewCreator != null){
-            mLoadViewCreator.onStopLoad();
+            mLoadViewCreator.onStopLoad(o);
         }
     }
 

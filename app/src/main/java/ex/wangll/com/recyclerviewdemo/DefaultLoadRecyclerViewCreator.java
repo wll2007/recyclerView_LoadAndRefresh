@@ -56,7 +56,7 @@ public class DefaultLoadRecyclerViewCreator implements LoadViewCreator {
     }
 
     @Override
-    public void onStopLoad() {
+    public void onStopLoad(Object o) {
         imageView.setRotation(0);
         imageView.setVisibility(View.VISIBLE);
         mProbar.setVisibility(View.GONE);
